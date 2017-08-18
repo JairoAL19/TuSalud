@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Categoria;
 use App\Models\Anuncio;
 use App\Models\Empresa;
+use Cache;
 class Categorias extends Controller
 {
     public function index($nombre)
@@ -34,7 +35,7 @@ class Categorias extends Controller
     	}
 
     	$categoria = Categoria::where('nombre', $nombre)->first();
-    	$ads = Anuncio::where('cod_cat', $categoria->cod_cat)->get();
+    	$ads = Anuncio::where('cod_cat', $categoria->cod_cat)->where('estado', 'A')->get();
     	$data = [];
     	$cont = count($ads);
     	for ($i=1; $i <= $cont; $i++) { 
@@ -80,7 +81,7 @@ class Categorias extends Controller
         }
 
         $categoria = Categoria::where('nombre', $sub)->first();
-        $ads = Anuncio::where('cod_subcat', $categoria->cod_subcat)->get();
+        $ads = Anuncio::where('cod_subcat', $categoria->cod_subcat)->where('estado', 'A')->get();
         $data = [];
         $cont = count($ads);
         for ($i=1; $i <= $cont; $i++) { 
@@ -190,7 +191,10 @@ class Categorias extends Controller
     }
     public function sumarvisit($id){
         $anuncio = Anuncio::find($id);
-        $anuncio->vistas = intval($anuncio->vistas)+1;
-        $anuncio->save();
+        if(Cache::has($id)==false){
+            Cache::add($id,'contador',0.30);
+            $anuncio->vistas = intval($anuncio->vistas)+1;
+            $anuncio->save();
+        }
     }
 }

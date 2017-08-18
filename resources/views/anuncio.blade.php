@@ -13,7 +13,7 @@
 			border: 0px;
 		}
 		#cke_1_contents{
-			height: 250px !important;
+			height: 300px !important;
 		}
 		#cke_1_bottom{
 			display: none;
@@ -47,20 +47,29 @@
 										<h2 style="display: inline-block;"> {{$anuncio->empresa}} </h2>
 									</header>
 									<div style="width: 100%;">
-										<div class="divleft" style="display: inline-block; width: 70%">
-											<script src="{{ asset('/ckeditor/ckeditor.js') }}"></script>
-											<textarea class="ckeditor" name="texto" id="editor1" readonly >{{$anuncio->texto}}</textarea>
-										</div>
-										<div class="divright" style="display: inline-block; width: 29%; float: right;">
-											<img style="width: 100%" src="/{{$anuncio->imagen}}">
-											<div>
-												<p style="width: 90%; text-align: center; font-size: 13px; margin-left: 5%">{{$anuncio->encabezado}}</p>
-												<p style="text-align: center;"><b>Correo: {{$anuncio->correo}}</b></p>
-												<p style="text-align: center;"><b>Teléfono: {{$anuncio->telf1}}</b></p>
+										<img style="width: 87%; margin-left: 5.5%" src="/{{$anuncio->imagen}}">
+										<div style="margin-left: 5%; width: 90%">
+											<div class="divleft" style="display: inline-block; width: 70%">
+												<script src="{{ asset('/ckeditor/ckeditor.js') }}"></script>
+												<textarea class="ckeditor" name="texto" id="editor1" readonly >{{$anuncio->texto}}</textarea>
+											</div>
+											<div class="divright" style="display: inline-block; width: 29%; float: left;">	
+												<div>
+													<header class="major" style="margin-left: 23%; margin-top: 4%">
+									                    <h3>Datos de contacto</h3>
+									                </header>
+													<p style="width: 90%; text-align: center; font-size: 13px; margin-left: 5%">{{$anuncio->encabezado}}</p>
+													<p style="text-align: center;"><b>Correo: {{$anuncio->correo}}</b></p>
+													<p style="text-align: center;"><b>Teléfono: {{$anuncio->telf1}}</b></p>
+												</div>
 											</div>
 										</div>
-									</div>								
-
+									</div>
+									<div style="margin-left: 10%;">	
+										<ul class="actions" >
+					                        <li><a href="#" class="button big">Ir a la Web</a></li>
+					                    </ul>
+				                    </div>
 								</section>
 							<section style="margin-top: 7.5%">
 								<header class="major">
@@ -70,7 +79,7 @@
 				                <div class="posts">
 				                    @foreach($mvistos as $anuncio)
 				                        <article>
-				                            <a href="#" class="image"><img src="/{{ $anuncio->imagen }}" alt="" /></a>
+				                            <a href="/Categoria/{{$nombre_cat}}/{{$anuncio->id}}" class="image"><img src="/{{ $anuncio->imagen }}" alt="" /></a>
 				                            <h3 style="display: inline-block; margin-right: 1%">{{ $anuncio->empresa }}</h3> {{ $anuncio->vistas }} <label class="fa fa-eye" style="display: inline-block;" ></label>
 				                            <p>{{ $anuncio->encabezado }}</p>
 				                            <ul class="actions">

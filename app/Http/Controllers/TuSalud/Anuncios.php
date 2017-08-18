@@ -73,8 +73,15 @@ class Anuncios extends Controller
                 }
             }
         }
-
-        $result = Anuncio::where('encabezado', 'LIKE', '%'.$data->search.'%')->get();
+        $busqu = $data->search;
+        $result = Anuncio::where(function ($query) use ($busqu) {
+                $query->where('estado', '=', 'A');
+            })
+            ->where(function ($query) use ($busqu) {
+                $query->where('encabezado', 'LIKE', '%'.$busqu.'%')
+                      ->orWhere('texto', 'LIKE', '%'.$busqu.'%');
+            })->get();
+        //where('estado', 'A')->where('encabezado', 'LIKE', '%'.$data->search.'%' OR )->orWhere('texto', 'LIKE', '%'.$data->search.'%')->get();
         $datos = [];
         for ($i=0; $i < count($result); $i++) { 
             $datos[$i] = new Anuncio();

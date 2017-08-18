@@ -25,11 +25,11 @@
                 <div class="posts">
                     @foreach($resultados as $resultado)
                         <article>
-                            <a href="#" class="image"><img src="/{{ $resultado->imagen }}" alt="" /></a>
+                            <a href="/Categoria/{{$resultado->categoria}}/{{$resultado->id}}" class="image"><img src="/{{ $resultado->imagen }}" alt="" /></a>
                             <h3 style="display: inline-block; margin-right: 1%">{{ $resultado->empresa }}</h3> {{ $resultado->vistas }} <label class="fa fa-eye" style="display: inline-block;" ></label>
                             <p>{{ $resultado->encabezado }}</p>
                             <ul class="actions">
-                                <li><a href="{{$resultado->categoria}}/{{$resultado->id}}" class="button">Más</a></li>
+                                <li><a href="/Categoria/{{$resultado->categoria}}/{{$resultado->id}}" class="button">Más</a></li>
                             </ul>
                         </article>
                     @endforeach                                        

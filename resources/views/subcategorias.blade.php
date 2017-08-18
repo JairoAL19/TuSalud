@@ -26,7 +26,7 @@
                 <div class="posts">
                     @foreach($anuncios as $anuncio)
                         <article>
-                            <a href="#" class="image"><img src="/{{ $anuncio->imagen }}" alt="" /></a>
+                            <a href="/SubCategoria/{{$categoria}}/{{$subcategoria}}/{{$anuncio->id}}" class="image"><img src="/{{ $anuncio->imagen }}" alt="" /></a>
                             <h3 style="display: inline-block; margin-right: 1%">{{ $anuncio->empresa }}</h3> {{ $anuncio->vistas }} <label class="fa fa-eye" style="display: inline-block;" ></label>
                             <p>{{ $anuncio->encabezado }}</p>
                             <ul class="actions">
